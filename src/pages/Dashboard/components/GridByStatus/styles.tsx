@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
 const registrationStatusStyles: {
-  [key in string]: { background: string; title: string };
+  [key in string]: { background: string; title: string }
 } = {
   REVIEW: {
     background: "#FDF8E9",
@@ -14,7 +15,7 @@ const registrationStatusStyles: {
     background: "#FBEDF6",
     title: "#CE2893",
   },
-};
+}
 
 export const Container = styled.div`
   display: grid;
@@ -22,7 +23,7 @@ export const Container = styled.div`
   grid-gap: 24px;
   justify-content: center;
   margin-top: 24px;
-`;
+`
 
 export const Column = styled.div<{ status: any }>`
   height: auto;
@@ -31,15 +32,15 @@ export const Column = styled.div<{ status: any }>`
   border-radius: 32px;
   min-height: 80vh;
   max-height: 80vh;
-`;
+`
 
 export const TitleColumn = styled.h3<{ status: any }>`
   margin: 0px;
   color: ${({ status }) => registrationStatusStyles[status].title};
   margin: 24px;
-`;
+`
 
-export const CollumContent = styled.div`
+export const ColumnContent = styled.div`
   overflow: auto;
   max-height: 85%;
-`;
+`

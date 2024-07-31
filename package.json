@@ -12,14 +12,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@brazilian-utils/brazilian-utils": "1.0.0-rc.12",
+    "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.2",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.1",
     "react-icons": "^5.2.1",
     "react-router-dom": "5.1.2",
     "styled-components": "^6.1.11",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^2.0.4",

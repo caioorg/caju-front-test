@@ -1,40 +1,44 @@
-import { ButtonSmall } from "~/components/Buttons";
-import * as S from "./styles";
+import { RegistrationItem } from "@caju/commons/contracts/registration"
+import { ButtonSmall } from "@caju/components/Buttons"
+import { memo } from "react"
 import {
-  HiOutlineMail,
-  HiOutlineUser,
   HiOutlineCalendar,
+  HiOutlineMail,
   HiOutlineTrash,
-} from "react-icons/hi";
+  HiOutlineUser,
+} from "react-icons/hi"
+import * as S from "./styles"
 
-type Props = {
-  data: any;
-};
+interface RegistrationCardProps {
+  item: RegistrationItem
+  onDisapprove: () => void
+  onApprove: () => void
+  onRevision: () => void
+}
 
-const RegistrationCard = (props: Props) => {
+function RegistrationCard(args: RegistrationCardProps) {
   return (
     <S.Card>
       <S.IconAndText>
         <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
+        <h3>{args.item.employeeName}</h3>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineMail />
-        <p>{props.data.email}</p>
+        <p>{args.item.email}</p>
       </S.IconAndText>
       <S.IconAndText>
         <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
+        <span>{args.item.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(255, 145, 154)">Reprovar</ButtonSmall>
         <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
         <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
-
         <HiOutlineTrash />
       </S.Actions>
     </S.Card>
-  );
-};
+  )
+}
 
-export default RegistrationCard;
+export default memo(RegistrationCard)
