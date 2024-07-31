@@ -1,4 +1,7 @@
-import { RegistrationItem } from "@caju/commons/contracts/registration"
+import {
+  RegistrationItem,
+  RegistrationStatus,
+} from "@caju/commons/contracts/registration"
 import RegistrationCard from "../RegistrationCard"
 import * as S from "./styles"
 
@@ -10,8 +13,12 @@ const COLUMNS = [
 
 export function GridByStatus({
   registrations,
+  onChangedStatus,
+  onDelete,
 }: {
   registrations: RegistrationItem[]
+  onChangedStatus: (args: { id: string; status: RegistrationStatus }) => void
+  onDelete: (registrationId: string) => void
 }) {
   return (
     <S.Container>
@@ -28,17 +35,14 @@ export function GridByStatus({
               </S.TitleColumn>
               <S.ColumnContent>
                 {filteredRegistrations?.map(
-                  (registration: RegistrationItem) => {
-                    return (
-                      <RegistrationCard
-                        item={registration}
-                        key={registration.id}
-                        onApprove={() => console.log("aprovado")}
-                        onDisapprove={() => console.log("reprovado")}
-                        onRevision={() => console.log("revisão")}
-                      />
-                    )
-                  }
+                  (registration: RegistrationItem) => (
+                    <RegistrationCard
+                      item={registration}
+                      key={registration.id}
+                      onActionStatus={onChangedStatus}
+                      onDelete={onDelete}
+                    />
+                  )
                 )}
               </S.ColumnContent>
             </>

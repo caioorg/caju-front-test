@@ -1,21 +1,21 @@
-import TextField from "~/components/TextField";
-import * as S from "./styles";
-import Button from "~/components/Buttons";
-import { HiOutlineArrowLeft } from "react-icons/hi";
-import { IconButton } from "~/components/Buttons/IconButton";
-import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
+import { NAVIGATION_ROUTES } from "@caju/commons/constants"
+import Button from "@caju/components/Buttons"
+import { IconButton } from "@caju/components/Buttons/IconButton"
+import TextField from "@caju/components/TextField"
+import { HiOutlineArrowLeft } from "react-icons/hi"
+import { useHistory } from "react-router-dom"
+import * as S from "./styles"
 
 const NewUserPage = () => {
-  const history = useHistory();
-  const goToHome = () => {
-    history.push(routes.dashboard);
-  };
+  const history = useHistory()
 
   return (
     <S.Container>
       <S.Card>
-        <IconButton onClick={() => goToHome()} aria-label="back">
+        <IconButton
+          onClick={() => history.push(NAVIGATION_ROUTES.dashboard)}
+          aria-label="back"
+        >
           <HiOutlineArrowLeft size={24} />
         </IconButton>
         <TextField placeholder="Nome" label="Nome" />
@@ -25,7 +25,7 @@ const NewUserPage = () => {
         <Button onClick={() => {}}>Cadastrar</Button>
       </S.Card>
     </S.Container>
-  );
-};
+  )
+}
 
-export default NewUserPage;
+export default NewUserPage

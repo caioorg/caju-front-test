@@ -1,7 +1,7 @@
 import { Fragment, ReactNode } from "react"
 import * as S from "./styles"
 
-export function Layout({ children }: { children: ReactNode }) {
+export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Fragment>
       <S.Header>

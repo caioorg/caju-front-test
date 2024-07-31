@@ -2,7 +2,7 @@ import { isValidCPF } from "@brazilian-utils/brazilian-utils"
 import { NAVIGATION_ROUTES } from "@caju/commons/constants"
 import Button from "@caju/components/Buttons"
 import { IconButton } from "@caju/components/Buttons/IconButton"
-import TextField from "@caju/components/TextField"
+import { TextFieldMask } from "@caju/components/TextFieldMask"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useCallback, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -21,8 +21,10 @@ const schema = z.object({
 
 export function SearchByDocument({
   onFilter,
+  onRefresh,
 }: {
   onFilter: (value: string) => void
+  onRefresh: () => void
 }) {
   const [enableClear, setEnableClear] = useState(false)
   const history = useHistory()
@@ -54,11 +56,12 @@ export function SearchByDocument({
   return (
     <S.Container>
       <S.ContainerSearch onSubmit={handleSubmit(fnSearchDocument)}>
-        <TextField
+        <TextFieldMask
+          mask="999.999.999-99"
           label="Buscar"
-          placeholder="Digite um CPF válido"
           {...register("documentValue")}
           error={errors.documentValue?.message}
+          placeholder="Digite um CPF válido"
         />
         <S.ActionsSearch>
           <IconButton
@@ -85,7 +88,7 @@ export function SearchByDocument({
         </S.ActionsSearch>
       </S.ContainerSearch>
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="refetch" onClick={onRefresh}>
           <HiRefresh />
         </IconButton>
         <Button onClick={() => history.push(NAVIGATION_ROUTES.newUser)}>
