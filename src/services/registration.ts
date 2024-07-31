@@ -43,4 +43,21 @@ export default class RegistrationService {
       return false
     }
   }
+
+  static async create(args: {
+    admissionDate: string
+    email: string
+    employeeName: string
+    cpf: string
+  }) {
+    try {
+      const response = await api.post("/registrations", {
+        ...args,
+        status: "REVIEW",
+      })
+      return response.data
+    } catch (error) {
+      return null
+    }
+  }
 }

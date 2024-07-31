@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useCallback, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { HiRefresh, HiSearch, HiTrash } from "react-icons/hi"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { z } from "zod"
 import * as S from "./styles"
 
@@ -27,7 +27,7 @@ export function SearchByDocument({
   onRefresh: () => void
 }) {
   const [enableClear, setEnableClear] = useState(false)
-  const history = useHistory()
+  const history = useNavigate()
 
   const {
     register,
@@ -91,7 +91,7 @@ export function SearchByDocument({
         <IconButton aria-label="refetch" onClick={onRefresh}>
           <HiRefresh />
         </IconButton>
-        <Button onClick={() => history.push(NAVIGATION_ROUTES.newUser)}>
+        <Button onClick={() => history(NAVIGATION_ROUTES.newUser)}>
           Nova Admissão
         </Button>
       </S.Actions>
