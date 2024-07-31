@@ -1,28 +1,31 @@
-import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
-import routes from "./routes";
-import DashboardPage from "~/pages/Dashboard";
-import NewUserPage from "~/pages/NewUser";
+import { NAVIGATION_ROUTES } from "@caju/commons/constants"
+import { Layout } from "@caju/components/Layout"
+import DashboardPage from "@caju/pages/Dashboard"
+import NewUserPage from "@caju/pages/NewUser"
+import { BrowserRouter, Redirect, Route } from "react-router-dom"
 
-const Router = () => {
+const WrapperRouter = () => {
   return (
-    <div style={{ marginTop: 64 }}>
-      <HashRouter>
-        <Switch>
-          <Route exact path={routes.dashboard} component={DashboardPage} />
-          <Route exact path={routes.newUser} component={NewUserPage} />
-          <Route
-            exact
-            path={routes.history}
-            component={() => <div>History</div>}
-          />
+    <BrowserRouter>
+      <Layout>
+        <Route
+          exact
+          path={NAVIGATION_ROUTES.dashboard}
+          component={DashboardPage}
+        />
+        <Route exact path={NAVIGATION_ROUTES.newUser} component={NewUserPage} />
+        <Route
+          exact
+          path={NAVIGATION_ROUTES.history}
+          component={() => <div>History</div>}
+        />
 
-          <Route exact path="*">
-            <Redirect to={routes.dashboard} />
-          </Route>
-        </Switch>
-      </HashRouter>
-    </div>
-  );
-};
+        <Route exact path="*">
+          <Redirect to={NAVIGATION_ROUTES.dashboard} />
+        </Route>
+      </Layout>
+    </BrowserRouter>
+  )
+}
 
-export default Router;
+export default WrapperRouter
