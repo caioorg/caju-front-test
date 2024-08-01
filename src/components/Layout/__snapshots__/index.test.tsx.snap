@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component] - Layout should render the header and children 1`] = `
+<DocumentFragment>
+  <header
+    class="sc-braxZu ctnmxR"
+  >
+    <h1>
+      Caju Front Teste
+    </h1>
+  </header>
+  <section
+    class="sc-gJhJTp dXojQS"
+  >
+    <div>
+      Test Content
+    </div>
+  </section>
+</DocumentFragment>
+`;

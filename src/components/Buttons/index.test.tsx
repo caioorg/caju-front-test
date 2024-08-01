@@ -1,10 +1,9 @@
-import Button from ".";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react"
+import Button from "."
 
-describe("Button", () => {
-  it("Should show button", () => {
-    const { debug } = render(<Button>Ativar</Button>);
-    expect(screen.getByRole("button", { name: /ativar/i }));
-    debug();
-  });
-});
+describe("[Component] - Button", () => {
+  it("should render button", () => {
+    render(<Button>Ativar</Button>)
+    expect(screen.getByRole("button", { name: /ativar/i }))
+  })
+})

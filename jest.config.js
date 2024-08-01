@@ -9,6 +9,7 @@ export default {
   },
   moduleNameMapper: {
     "^@caju/(.+)": "<rootDir>/src/$1",
+    "^.+\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
-  //   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 }
