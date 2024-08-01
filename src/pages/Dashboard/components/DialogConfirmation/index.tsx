@@ -4,9 +4,15 @@ type DialogConfirmProps = {
   isOpen: boolean
   onClose: () => void
   title: string
+  onSuccess: () => void
 }
 
-export function DialogConfirm({ isOpen, onClose, title }: DialogConfirmProps) {
+export function DialogConfirm({
+  isOpen,
+  onClose,
+  title,
+  onSuccess,
+}: DialogConfirmProps) {
   if (!isOpen) return null
 
   return (
@@ -17,16 +23,15 @@ export function DialogConfirm({ isOpen, onClose, title }: DialogConfirmProps) {
           <S.CloseButton onClick={onClose}>&times;</S.CloseButton>
         </S.DialogHeader>
         <S.DialogBody>
-          <p>
-            Deseja realmente realizar essa mudança? Vale lembrar que talvez ela
-            não possa ser revertida.
-          </p>
+          <p>Vale lembrar que talvez ela não possa ser revertida.</p>
         </S.DialogBody>
         <S.DialogFooter>
           <S.DialogFooterCloseButton onClick={onClose}>
             Cancelar
           </S.DialogFooterCloseButton>
-          <S.DialogFooterConfirmButton>Confirmar</S.DialogFooterConfirmButton>
+          <S.DialogFooterConfirmButton onClick={onSuccess}>
+            Confirmar
+          </S.DialogFooterConfirmButton>
         </S.DialogFooter>
       </S.DialogContainer>
     </S.Overlay>

@@ -2,6 +2,8 @@ import {
   RegistrationItem,
   RegistrationStatus,
 } from "@caju/commons/contracts/registration"
+import { useCallback, useState } from "react"
+import { DialogConfirm } from "../DialogConfirmation"
 import RegistrationCard from "../RegistrationCard"
 import * as S from "./styles"
 
@@ -20,8 +22,42 @@ export function GridByStatus({
   onChangedStatus: (args: { id: string; status: RegistrationStatus }) => void
   onDelete: (registrationId: string) => void
 }) {
+  const [confirmation, setConfirmation] = useState<{
+    open: boolean
+    id?: string
+    status?: RegistrationStatus
+    delete?: boolean
+  }>({ open: false })
+
+  const fnSuccessConfirmation = useCallback(() => {
+    if (confirmation.delete) onDelete(confirmation.id!)
+    else
+      onChangedStatus({
+        id: confirmation.id!,
+        status: confirmation.status!,
+      })
+
+    return setConfirmation({ open: false })
+  }, [
+    confirmation.delete,
+    confirmation.id,
+    confirmation.status,
+    onChangedStatus,
+    onDelete,
+  ])
+
   return (
     <S.Container>
+      <DialogConfirm
+        isOpen={confirmation.open}
+        onSuccess={fnSuccessConfirmation}
+        onClose={() => setConfirmation({ open: false })}
+        title={
+          confirmation.delete
+            ? "Deseja realmente excluir esse registro?"
+            : "Deseja realmente realizar essa alteração?"
+        }
+      />
       {COLUMNS.map((column) => {
         const filteredRegistrations = registrations.filter(
           (registration) => registration.status === column.status
@@ -39,8 +75,12 @@ export function GridByStatus({
                     <RegistrationCard
                       item={registration}
                       key={registration.id}
-                      onActionStatus={onChangedStatus}
-                      onDelete={onDelete}
+                      onActionStatus={({ id, status }) =>
+                        setConfirmation({ id, status, open: true })
+                      }
+                      onDelete={(id: string) =>
+                        setConfirmation({ id, delete: true, open: true })
+                      }
                     />
                   )
                 )}
